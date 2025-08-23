@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>VIP Services & Lab Panels | ProHome Draws & Collections</title>
-  <meta name="description" content="Transparent pricing and explanations for VIP lab panels and individual tests. Mobile draw fee, specimen processing, and secure lab delivery are included in every test." />
+  <meta name="description" content="Transparent pricing and explanations for VIP lab panels and individual tests. Mobile travel, specimen processing, and secure lab delivery are included in every test." />
   <style>
     :root{
       --brand-red:#c21f2f;
@@ -12,35 +12,28 @@
       --ink:#1f2328;
       --muted:#5a606b;
       --bg:#ffffff;
+      --panel:#f2e5db;         /* light tan like your site drawer */
       --card:#ffffff;
       --accent:#f6f7f9;
       --radius:18px;
-      --shadow:0 10px 30px rgba(0,0,0,.08);
+      --shadow:0 12px 32px rgba(0,0,0,.12);
     }
     *{box-sizing:border-box}
     html,body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;line-height:1.55}
     a{color:var(--brand-red);text-decoration:none}
     a:hover{text-decoration:underline}
-    .wrap{max-width:1100px;margin:auto;padding:28px 18px 80px}
+    .wrap{max-width:1100px;margin:auto;padding:28px 18px 100px}
     header.hero{
-      background:radial-gradient(1200px 400px at 50% -200px, rgba(194,31,47,.14), transparent) , linear-gradient(180deg, rgba(194,31,47,.05), transparent 60%);
+      background:radial-gradient(1200px 400px at 50% -200px, rgba(194,31,47,.14), transparent),
+                 linear-gradient(180deg, rgba(194,31,47,.05), transparent 60%);
       padding:48px 0 18px;
       text-align:center;
     }
-    .title{font-weight:800;letter-spacing:.2px;color:var(--brand-red);font-size: clamp(28px, 4vw, 40px);margin:0 0 8px}
+    .title{font-weight:800;letter-spacing:.2px;color:var(--brand-red);font-size:clamp(28px,4vw,40px);margin:0 0 8px}
     .subtitle{color:var(--muted);font-size:clamp(14px,2.1vw,18px);margin:0 auto 22px;max-width:900px}
-    .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:14px 0 0;position:relative}
-    .btn{display:inline-block;padding:12px 18px;border-radius:12px;border:2px solid var(--brand-red);font-weight:600;cursor:pointer;user-select:none}
-    .btn.primary{background:var(--brand-red);color:#fff;border-color:transparent}
-    .btn.ghost{color:var(--brand-red);background:#fff}
-    .menu{position:absolute;top:100%;left:50%;transform:translateX(-50%);background:#fff;border:1px solid #eee;border-radius:12px;box-shadow:var(--shadow);padding:8px;min-width:260px;display:none;z-index:10}
-    .menu.open{display:block}
-    .menu a{display:flex;justify-content:space-between;gap:8px;padding:10px 12px;border-radius:10px;color:var(--ink)}
-    .menu a:hover{background:#fafafa}
-    .menu .note{font-size:12px;color:var(--muted);padding:6px 10px}
     main{margin-top:26px}
     .grid{display:grid;grid-template-columns:1fr;gap:18px}
-    @media (min-width: 900px){ .grid{grid-template-columns:1fr 1fr} }
+    @media (min-width:900px){.grid{grid-template-columns:1fr 1fr}}
     .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}
     .card h3{margin:0 0 10px;font-size:20px;color:var(--brand-dark)}
     .price{display:inline-block;background:rgba(194,31,47,.08);color:var(--brand-red);font-weight:800;border-radius:999px;padding:4px 10px;margin-left:8px}
@@ -50,40 +43,141 @@
     .notice{background:var(--accent);border-left:4px solid var(--brand-red);padding:14px;border-radius:12px}
     footer{margin-top:28px;text-align:center;color:var(--muted);font-size:14px}
     .legend{font-size:15px;color:var(--muted)}
-    @media (max-width:600px){
-      .menu{left:0;right:0;transform:none;margin:0 18px}
+
+    /* Side drawers (to match your site) */
+    .side-tab{
+      position:fixed; top:50%; transform:translateY(-50%);
+      writing-mode:vertical-rl; text-orientation:mixed;
+      background:var(--brand-red); color:#fff; font-weight:700; letter-spacing:.5px;
+      padding:14px 10px; border-radius:12px; cursor:pointer;
+      box-shadow:var(--shadow); z-index:50; user-select:none;
+    }
+    .side-tab.right{ right:0; border-radius:12px 0 0 12px }
+    .side-tab.left{ left:0; border-radius:0 12px 12px 0 }
+
+    .drawer{
+      position:fixed; top:0; bottom:0; width:min(460px, 95vw);
+      background:var(--panel); box-shadow:var(--shadow);
+      z-index:60; padding:22px 22px 30px; overflow:auto;
+      transition:transform .28s ease; will-change:transform;
+    }
+    .drawer.right{ right:0; transform:translateX(100%) }
+    .drawer.left{ left:0; transform:translateX(-100%) }
+    .drawer.open.right,.drawer.open.left{ transform:translateX(0) }
+    .drawer .close{
+      position:absolute; top:16px; right:18px; width:32px; height:32px;
+      border-radius:50%; border:2px solid var(--brand-red); color:var(--brand-red);
+      display:grid; place-items:center; font-weight:900; cursor:pointer; background:#fff;
+    }
+    .drawer h2{margin:8px 0 14px; color:var(--brand-red);font-size:28px}
+    .hr{height:1px;background:#e7d6c7;margin:14px 0 18px;border-radius:2px}
+
+    /* Staff cards like your “Contact Now” */
+    .staff{
+      display:grid; grid-template-columns:80px 1fr; gap:16px; align-items:center;
+      background:#fff; border-radius:18px; padding:14px; margin:12px 0; box-shadow:var(--shadow);
+    }
+    .avatar{
+      width:80px;height:80px;border-radius:50%;background:#f0f0f0;display:grid;place-items:center;
+      font-weight:800;color:#9aa0a6;font-size:26px;
+    }
+    .staff h3{margin:0;font-size:32px;line-height:1.1}
+    .staff small{color:#6a6f78}
+    .cta-red{
+      display:inline-flex; align-items:center; gap:8px; padding:12px 16px;
+      background:var(--brand-red); color:#fff; border-radius:12px; font-weight:700;
+      text-decoration:none; margin-top:8px;
+    }
+
+    /* Appointment form like your right drawer */
+    form label{font-weight:600; display:block; margin:12px 0 6px}
+    input, textarea, select{
+      width:100%; padding:12px 12px; border:1px solid #ddd; border-radius:12px; font-size:16px; background:#fff;
+    }
+    .btn-row{display:flex; gap:12px; flex-wrap:wrap; margin-top:14px}
+    .btn{display:inline-block;padding:12px 18px;border-radius:12px;border:2px solid var(--brand-red);font-weight:700;cursor:pointer}
+    .btn.primary{background:var(--brand-red);color:#fff;border-color:transparent}
+    .btn.ghost{color:var(--brand-red);background:transparent}
+
+    /* Floating top CTA for mobile */
+    .floating-cta{
+      position:fixed; top:16px; right:16px; z-index:40; display:flex; gap:10px; flex-wrap:wrap;
+    }
+    .floating-cta .btn{backdrop-filter:saturate(180%) blur(6px); background:#ffffffea}
+    @media (max-width:700px){
+      .drawer{width:100%}
+      .side-tab{display:none}
+      .floating-cta{left:16px; right:auto}
     }
   </style>
 </head>
 <body>
+  <div class="floating-cta">
+    <button class="btn primary" id="openAppointment">Make an Appointment!</button>
+    <button class="btn ghost" id="openContact">Contact Now</button>
+  </div>
+
+  <!-- Left CONTACT NOW tab & drawer -->
+  <div class="side-tab left" id="tabContact">CONTACT NOW</div>
+  <aside class="drawer left" id="drawerContact" aria-hidden="true">
+    <div class="close" data-close="drawerContact" aria-label="Close">×</div>
+    <h2>Contact Now</h2>
+
+    <div class="staff">
+      <div class="avatar">A</div>
+      <div>
+        <h3>Anahi <span style="font-weight:400">Nunez</span></h3>
+        <small>English &amp; Spanish — Tel: (407) 308-2799</small><br/>
+        <a class="cta-red" href="tel:+14073082799">📞 Call Now</a>
+      </div>
+    </div>
+
+    <div class="staff">
+      <div class="avatar">Z</div>
+      <div>
+        <h3>Zimone <span style="font-weight:400">Turner</span></h3>
+        <small>English — Tel: (407) 900-7396</small><br/>
+        <a class="cta-red" href="tel:+14079007396">📞 Call Now</a>
+      </div>
+    </div>
+
+    <div class="hr"></div>
+    <a class="btn primary" href="https://www.prohomedrawsandcollections.com/booking" target="_blank" rel="noopener">Make an Appointment!</a>
+  </aside>
+
+  <!-- Right MAKE AN APPOINTMENT tab & drawer -->
+  <div class="side-tab right" id="tabAppointment">MAKE AN APPOINTMENT</div>
+  <aside class="drawer right" id="drawerAppointment" aria-hidden="true">
+    <div class="close" data-close="drawerAppointment" aria-label="Close">×</div>
+    <h2>Make an Appointment</h2>
+    <form onsubmit="event.preventDefault(); window.open('https://www.prohomedrawsandcollections.com/booking','_blank');">
+      <label for="name">Name *</label>
+      <input id="name" name="name" placeholder="Your full name" required>
+
+      <label for="phone">Phone *</label>
+      <input id="phone" name="phone" placeholder="(###) ###-####" required>
+
+      <label for="email">Email *</label>
+      <input id="email" name="email" type="email" placeholder="you@example.com" required>
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="4" placeholder="Tell us what you need…"></textarea>
+
+      <label style="display:flex;gap:10px;align-items:center;margin-top:10px">
+        <input type="checkbox"> <span style="font-size:14px;color:#6a6f78">I voluntarily consent to be contacted and allow the use of my data for this purpose.</span>
+      </label>
+
+      <div class="btn-row">
+        <button type="submit" class="btn primary">Submit!</button>
+        <a class="btn ghost" href="https://www.prohomedrawsandcollections.com/booking" target="_blank" rel="noopener">Book on Main Site</a>
+      </div>
+    </form>
+  </aside>
+
   <header class="hero">
     <div class="wrap">
       <h1 class="title">ProHome Draws & Collections — VIP Lab Panels & Test Explanations</h1>
       <p class="subtitle">Transparent pricing. <strong>Mobile travel, specimen processing,</strong> and <strong>secure delivery to the laboratory</strong> are included with every test.</p>
-      <div class="cta-row">
-        <button class="btn primary" id="bookBtn" aria-haspopup="true" aria-expanded="false">Book Now</button>
-        <button class="btn ghost" id="callBtn" aria-haspopup="true" aria-expanded="false">Call / Text</button>
-
-        <!-- BOOK MENU -->
-        <div class="menu" id="bookMenu" role="menu" aria-labelledby="bookBtn">
-          <a href="https://www.prohomedrawsandcollections.com/" target="_blank" rel="noopener" role="menuitem">
-            Book on Main Site <span>prohomedrawsandcollections.com</span>
-          </a>
-          <a href="https://www.prohomedrawsandcollections.com/booking" target="_blank" rel="noopener" role="menuitem">
-            Booking Page <span>/booking</span>
-          </a>
-          <div class="note">Replace links if your Wix booking URL is different.</div>
-        </div>
-
-        <!-- CALL/TEXT MENU -->
-        <div class="menu" id="callMenu" role="menu" aria-labelledby="callBtn">
-          <a href="tel:+14073082799" role="menuitem">Call (407) 308-2799 <span>dial</span></a>
-          <a href="tel:+14079007396" role="menuitem">Call (407) 900-7396 <span>dial</span></a>
-          <a href="sms:+14073082799?&body=Hello%20ProHome%2C%20I%27d%20like%20to%20book%20a%20mobile%20blood%20draw." role="menuitem">Text (407) 308-2799 <span>SMS</span></a>
-          <a href="sms:+14079007396?&body=Hello%20ProHome%2C%20I%27d%20like%20to%20book%20a%20mobile%20blood%20draw." role="menuitem">Text (407) 900-7396 <span>SMS</span></a>
-          <div class="note">Numbers pulled from your site's footer.</div>
-        </div>
-      </div>
     </div>
   </header>
 
@@ -195,30 +289,29 @@
   </footer>
 
   <script>
-    // dropdown menus
-    const bookBtn = document.getElementById('bookBtn');
-    const callBtn = document.getElementById('callBtn');
-    const bookMenu = document.getElementById('bookMenu');
-    const callMenu = document.getElementById('callMenu');
-    const toggle = (btn, menu) => {
-      const open = menu.classList.toggle('open');
-      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-      // close the other menu
-      [ [bookBtn, bookMenu], [callBtn, callMenu] ].forEach(([b,m])=>{
-        if(m!==menu){ m.classList.remove('open'); b.setAttribute('aria-expanded','false'); }
-      });
-    };
-    bookBtn.addEventListener('click', ()=> toggle(bookBtn, bookMenu));
-    callBtn.addEventListener('click', ()=> toggle(callBtn, callMenu));
-    // click outside to close
-    document.addEventListener('click', (e)=>{
-      if(!e.target.closest('.cta-row')){
-        [bookMenu, callMenu].forEach(m=>m.classList.remove('open'));
-        [bookBtn, callBtn].forEach(b=>b.setAttribute('aria-expanded','false'));
-      }
+    const $ = (s)=>document.querySelector(s);
+    const open = (id)=>{ const el=document.getElementById(id); el.classList.add('open'); el.setAttribute('aria-hidden','false'); };
+    const closeD = (id)=>{ const el=document.getElementById(id); el.classList.remove('open'); el.setAttribute('aria-hidden','true'); };
+    // side tabs
+    $('#tabContact').addEventListener('click', ()=> open('drawerContact'));
+    $('#tabAppointment').addEventListener('click', ()=> open('drawerAppointment'));
+    // floating buttons
+    $('#openAppointment').addEventListener('click', ()=> open('drawerAppointment'));
+    $('#openContact').addEventListener('click', ()=> open('drawerContact'));
+    // close buttons
+    document.querySelectorAll('.close').forEach(btn=>{
+      btn.addEventListener('click', ()=> closeD(btn.dataset.close));
     });
-    // current year
+    // ESC to close
+    document.addEventListener('keydown', (e)=>{
+      if(e.key==='Escape'){ closeD('drawerContact'); closeD('drawerAppointment'); }
+    });
+    // year
     document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+
   </script>
 </body>
 </html>
