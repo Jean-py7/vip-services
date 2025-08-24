@@ -1,248 +1,287 @@
-@@ -1,247 +0,0 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>VIP Services & Lab Panels | ProHome Draws & Collections</title>
-  <meta name="description" content="Transparent pricing and explanations for VIP lab panels and individual tests. Mobile travel fee, specimen processing, and secure delivery are included in every test." />
-  <style>
-    :root{
-      --brand-red:#c21f2f;
-      --brand-dark:#111319;
-      --ink:#1f2328;
-      --muted:#5a606b;
-      --bg:#ffffff;
-      --panel:#f2e3d9;
-      --card:#ffffff;
-      --accent:#fff5f6;
-      --radius:18px;
-      --shadow:0 12px 32px rgba(0,0,0,.12);
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;background:var(--bg);color:var(--ink);
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;line-height:1.55}
-    a{color:var(--brand-red);text-decoration:none}
-    a:hover{text-decoration:underline}
-
-    .topbar{position:sticky; top:0; z-index:70;
-      background:linear-gradient(180deg,#fff 0%, rgba(255,255,255,.85) 100%);
-      backdrop-filter:saturate(180%) blur(10px);
-      border-bottom:1px solid #eee;}
-    .topbar .inner{max-width:1200px;margin:auto;display:flex;align-items:center;gap:12px;padding:10px 16px}
-    .brand{font-weight:900;letter-spacing:.2px;color:var(--brand-red)}
-    .spacer{flex:1}
-    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:14px;border:2px solid var(--brand-red);font-weight:700;cursor:pointer}
-    .btn.ghost{background:#fff;color:var(--brand-red)}
-    .btn.primary{background:var(--brand-red);color:#fff;border-color:transparent}
-    .btn:hover{box-shadow:0 6px 18px rgba(194,31,47,.15)}
-
-    header.hero{background:radial-gradient(1200px 420px at 50% -220px, rgba(194,31,47,.16), transparent),
-                 linear-gradient(180deg, rgba(194,31,47,.06), transparent 60%);
-      padding:48px 0 18px;text-align:center;}
-    .title{font-weight:800;letter-spacing:.2px;color:var(--brand-red);
-      font-size:clamp(28px,4vw,40px);margin:0 0 8px}
-    .subtitle{color:var(--muted);font-size:clamp(14px,2.1vw,18px);margin:0 auto 22px;max-width:900px}
-    .wrap{max-width:1100px;margin:auto;padding:0 18px 100px}
-
-    main{margin-top:26px}
-    .grid{display:grid;grid-template-columns:1fr;gap:18px}
-    @media (min-width:900px){.grid{grid-template-columns:1fr 1fr}}
-    .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px;transition:transform .15s ease, box-shadow .15s ease}
-    .card:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(0,0,0,.16)}
-    .card h3{margin:0 0 12px;font-size:20px;color:var(--brand-dark)}
-    .price{display:inline-block;background:rgba(194,31,47,.1);color:var(--brand-red);font-weight:800;border-radius:999px;padding:4px 10px;margin-left:8px}
-    .card:nth-child(odd){background:linear-gradient(180deg,#fff 0%, #fff 60%, var(--accent) 120%)}
-    ul{margin:10px 0 0;padding-left:20px} li{margin:6px 0}
-    .section{margin:18px 0} .notice{background:var(--accent);border-left:4px solid var(--brand-red);padding:14px;border-radius:12px}
-    footer{margin-top:28px;text-align:center;color:var(--muted);font-size:14px} 
-    .legend{font-size:15px;color:#3a3f46;font-weight:700}
-    .legend em{font-style:normal;font-weight:700}
-
-    .drawer{position:fixed; top:0; bottom:0; width:min(480px, 95vw); background:var(--panel); box-shadow:var(--shadow);
-      z-index:80; padding:22px 22px 30px; overflow:auto; transition:transform .28s ease; will-change:transform;}
-    .drawer.right{ right:0; transform:translateX(100%) } .drawer.left{ left:0; transform:translateX(-100%) }
-    .drawer.open.right,.drawer.open.left{ transform:translateX(0) }
-    .drawer .close{position:absolute; top:16px; right:18px; width:34px; height:34px; border-radius:50%;
-      border:2px solid var(--brand-red); color:var(--brand-red); display:grid; place-items:center; font-weight:900; cursor:pointer; background:#fff;}
-    .drawer h2{margin:8px 0 14px; color:var(--brand-red);font-size:28px}
-    .hr{height:1px;background:#e7d6c7;margin:14px 0 18px;border-radius:2px}
-
-    .staff{display:grid; grid-template-columns:92px 1fr; gap:16px; align-items:center; background:#fff; border-radius:18px;
-      padding:14px; margin:12px 0; box-shadow:var(--shadow);}
-    .avatar{position:relative;width:92px;height:92px;border-radius:50%;overflow:hidden;background:#f0f0f0}
-    .avatar img{width:100%;height:100%;object-fit:cover;display:block;border-radius:50%}
-    .staff h3{margin:0;font-size:28px;line-height:1.1} .staff small{color:#6a6f78}
-    .cta-red, .cta-ghost{display:inline-flex; align-items:center; gap:8px; padding:12px 16px; border-radius:12px; font-weight:700; text-decoration:none; margin-top:8px;}
-    .cta-red{background:var(--brand-red); color:#fff} .cta-ghost{border:2px solid var(--brand-red); color:var(--brand-red); background:#fff}
-
-    @media (max-width:700px){ .drawer{width:100%} }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>ProHome Draws & Collections — VIP Lab Panels & Test Explanations</title>
+<style>
+  :root{
+    --brand:#c2121f;
+    --ink:#1f2328;
+    --muted:#5a606b;
+    --card:#ffffff;
+    --bg:#ffffff;
+    --radius:18px;
+    --shadow:10px 28px 38px rgba(0,0,0,.06), 0 3px 12px rgba(0,0,0,.05);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.55}
+  .wrap{max-width:1100px;margin:0 auto;padding:26px 18px 80px}
+  /* Hero */
+  .hero{
+    background:
+      radial-gradient(1200px 420px at 50% -220px, rgba(194,18,31,.20), transparent 60%),
+      linear-gradient(180deg, rgba(194,18,31,.08), transparent 70%);
+    border-radius:0 0 var(--radius) var(--radius);
+    text-align:center;
+    padding:38px 18px 28px;
+    margin:0 -18px 18px;
+  }
+  .brand-kicker{
+    display:inline-block;
+    color:var(--brand);
+    font-weight:700;
+    letter-spacing:.3px;
+    margin-bottom:8px;
+  }
+  h1{
+    margin:0 0 14px;
+    font-weight:800;
+    letter-spacing:.2px;
+    font-size:clamp(26px,4vw,40px);
+  }
+  .tagline{
+    color:#6c717c;
+    font-size:15px;
+    max-width:900px;
+    margin:0 auto 18px;
+  }
+  /* Buttons + popovers */
+  .actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:10px 0 6px}
+  .btn{
+    position:relative;
+    border:2px solid var(--brand);
+    color:#fff;
+    background:var(--brand);
+    border-radius:999px;
+    padding:11px 18px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.18s transform ease,.18s box-shadow ease;
+    box-shadow:0 8px 16px rgba(194,18,31,.18);
+  }
+  .btn.secondary{
+    color:var(--brand);
+    background:#fff;
+    border-color:var(--brand);
+    box-shadow:0 6px 14px rgba(0,0,0,.06);
+  }
+  .btn:active{transform:translateY(1px)}
+  .popover{
+    position:absolute; inset:auto auto 0 0; transform:translateY(calc(100% + 8px));
+    min-width:240px; background:#fff; border:1px solid rgba(0,0,0,.06);
+    border-radius:14px; box-shadow:var(--shadow); padding:10px; display:none; z-index:9;
+  }
+  .btn[aria-expanded="true"] + .popover{display:block}
+  .pop-title{font-size:12px;color:#6c717c;padding:6px 10px 2px}
+  .linkrow{display:flex;justify-content:space-between;align-items:center;gap:12px;
+           padding:10px 12px;border-radius:10px;text-decoration:none;color:var(--ink)}
+  .linkrow:hover{background:#f6f7f9}
+  .pill{font-size:11px;border:1px solid #e3e7ee;border-radius:999px;padding:3px 8px;color:#6c717c}
+  /* Cards */
+  .section{margin-top:24px}
+  .card{
+    background:var(--card);
+    border-radius:18px;
+    box-shadow:var(--shadow);
+    padding:18px 18px 16px;
+    margin-bottom:14px;
+  }
+  .card h3{margin:0 0 10px;font-size:18px}
+  .price{display:inline-block;background:#ffe7ea;color:#b20e1a;border-radius:999px;
+         font-weight:800;font-size:13px;padding:4px 10px;margin-left:8px}
+  ul{margin:10px 0 0 20px;padding:0}
+  li{margin:6px 0}
+  /* Grid for panels */
+  .grid{display:grid;grid-template-columns:1fr;gap:14px}
+  @media(min-width:820px){.grid{grid-template-columns:1fr 1fr}}
+  /* Footer note */
+  .note{
+    margin-top:16px;
+    padding:16px 18px;
+    background:#ffecee;
+    border:1px solid #ffd4d8;
+    border-radius:16px;
+    font-weight:800;
+    color:#7a121a;
+    box-shadow:0 8px 18px rgba(194,18,31,.08) inset;
+  }
+  a{color:inherit}
+  .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+</style>
 </head>
 <body>
-  <div class="topbar">
-    <div class="inner">
-      <div class="brand">ProHome Draws & Collections</div>
-      <div class="spacer"></div>
-      <button class="btn ghost" id="topContact">Contact Now</button>
-    </div>
-  </div>
+  <div class="wrap">
+    <div class="hero">
+      <span class="brand-kicker">ProHome Draws &amp; Collections</span>
+      <h1>VIP Lab Panels &amp; Test Explanations</h1>
+      <p class="tagline">
+        Transparent pricing. <strong>Mobile travel</strong>, <strong>specimen processing</strong>, and
+        <strong>secure delivery to the laboratory</strong> are included with every test.
+      </p>
 
-  <!-- Left CONTACT NOW Drawer (triggered by top button) -->
-  <aside class="drawer left" id="drawerContact" aria-hidden="true">
-    <div class="close" data-close="drawerContact" aria-label="Close">×</div>
-    <h2>Contact Now</h2>
+      <div class="actions" role="group" aria-label="Contact options">
+        <!-- CALL -->
+        <button class="btn" id="callBtn" aria-haspopup="true" aria-expanded="false">
+          Call Now
+        </button>
+        <div class="popover" role="menu" aria-labelledby="callBtn">
+          <div class="pop-title">Choose a number to call</div>
+          <a class="linkrow" role="menuitem" href="tel:+14073082799">
+            <span>Anahi — (407) 308-2799</span><span class="pill">dial</span>
+          </a>
+          <a class="linkrow" role="menuitem" href="tel:+14079007396">
+            <span>Zimone — (407) 900-7396</span><span class="pill">dial</span>
+          </a>
+        </div>
 
-    <div class="staff">
-      <div class="avatar"><img src="data:image/avif;base64,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" alt="Anahi Nunez"></div>
-      <div>
-        <h3>Anahi <span style="font-weight:400">Nunez</span></h3>
-        <small>English &amp; Spanish — Tel: (407) 308-2799</small><br/>
-        <a class="cta-red" href="tel:+14073082799">📞 Call Now</a>
+        <!-- TEXT -->
+        <button class="btn secondary" id="textBtn" aria-haspopup="true" aria-expanded="false">
+          Call / Text
+          <span class="sr-only"> options</span>
+        </button>
+        <div class="popover" role="menu" aria-labelledby="textBtn">
+          <div class="pop-title">SMS or Call</div>
+          <a class="linkrow" role="menuitem" href="sms:+14073082799">
+            <span>Text Anahi — (407) 308-2799</span><span class="pill">SMS</span>
+          </a>
+          <a class="linkrow" role="menuitem" href="sms:+14079007396">
+            <span>Text Zimone — (407) 900-7396</span><span class="pill">SMS</span>
+          </a>
+          <a class="linkrow" role="menuitem" href="tel:+14073082799">
+            <span>Call Anahi — (407) 308-2799</span><span class="pill">dial</span>
+          </a>
+          <a class="linkrow" role="menuitem" href="tel:+14079007396">
+            <span>Call Zimone — (407) 900-7396</span><span class="pill">dial</span>
+          </a>
+        </div>
       </div>
     </div>
 
-    <div class="staff">
-      <div class="avatar"><img src="data:image/avif;base64,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" alt="Zimone Turner"></div>
-      <div>
-        <h3>Zimone <span style="font-weight:400">Turner</span></h3>
-        <small>English — Tel: (407) 900-7396</small><br/>
-        <a class="cta-red" href="tel:+14079007396">📞 Call Now</a>
-      </div>
-    </div>
-
-    <div class="hr"></div>
-  </aside>
-
-  <header class="hero">
-    <div class="wrap">
-      <h1 class="title">ProHome Draws & Collections — VIP Lab Panels & Test Explanations</h1>
-      <p class="subtitle">Transparent pricing. <strong>Mobile travel, specimen processing,</strong> and <strong>secure delivery to the laboratory</strong> are included with every test.</p>
-    </div>
-  </header>
-
-  <main class="wrap">
-    <section class="section">
+    <!-- $79 ADDITIONAL TESTS -->
+    <div class="section">
       <div class="card">
         <h3>Additional Tests <span class="price">$79 each</span></h3>
         <ul>
           <li><strong>Sickle Cell</strong> — Screening for sickle cell trait or disease.</li>
           <li><strong>ABO Grouping / Rh Typing</strong> — Determines blood type and Rh factor.</li>
           <li><strong>PT/INR</strong> — Clotting time test for blood-thinner monitoring.</li>
-          <li><strong>Hepatitis C Antibody</strong></li>
-          <li><strong>HIV, 4th Generation</strong></li>
-          <li><strong>Hepatitis B Surface Antigen</strong></li>
-          <li><strong>Testosterone, Total</strong></li>
-          <li><strong>Hemoglobin A1C (A1C)</strong></li>
-          <li><strong>TSH (Thyroid-Stimulating Hormone)</strong></li>
-          <li><strong>CBC (Complete Blood Count)</strong></li>
-          <li><strong>CMP (Comprehensive Metabolic Panel)</strong></li>
-          <li><strong>PSA, Total</strong></li>
-          <li><strong>Lipid Panel</strong></li>
+          <li>Hepatitis C Antibody</li>
+          <li>HIV, 4th Generation</li>
+          <li>Hepatitis B Surface Antigen</li>
+          <li>Testosterone, Total</li>
+          <li>Hemoglobin A1C (A1C)</li>
+          <li>TSH (Thyroid-Stimulating Hormone)</li>
+          <li>CBC (Complete Blood Count)</li>
+          <li>CMP (Comprehensive Metabolic Panel)</li>
+          <li>PSA, Total</li>
+          <li>Lipid Panel</li>
         </ul>
       </div>
-    </section>
+    </div>
 
-    <section class="grid">
-      <div class="card">
-        <h3>Anemia Panel <span class="price">$159</span></h3>
-        <ul>
-          <li><strong>CBC w/ Differential</strong> — Full blood count including white-cell types.</li>
-          <li><strong>Ferritin</strong> — Iron storage.</li>
-          <li><strong>Vitamin B12 &amp; Folate</strong> — Vitamins essential for blood cell production.</li>
-          <li><strong>TIBC</strong> — Total iron-binding capacity (iron transport).</li>
-          <li><strong>Reticulocyte Count</strong> — Young red blood cell production.</li>
-        </ul>
-      </div>
-
+    <!-- PANELS -->
+    <div class="section grid">
       <div class="card">
         <h3>Annual Check-Up <span class="price">$209</span></h3>
         <ul>
-          <li><strong>CBC w/ Differential</strong> — Blood cells, hemoglobin, hematocrit, and white-cell types.</li>
-          <li><strong>CMP</strong> — Kidney &amp; liver function, electrolytes, and blood glucose.</li>
-          <li><strong>TSH</strong> — Thyroid function.</li>
-          <li><strong>Lipid Panel</strong> — Cholesterol &amp; triglycerides.</li>
-          <li><strong>A1C</strong> — Average blood sugar (2–3 months).</li>
+          <li>CBC w/ Differential — Blood cells, hemoglobin, and white-cell types.</li>
+          <li>CMP — Kidney &amp; liver function, electrolytes, and glucose.</li>
+          <li>TSH — Thyroid function.</li>
+          <li>Lipid Panel — Cholesterol &amp; triglycerides.</li>
+          <li>A1C — Average blood sugar (2–3 months).</li>
         </ul>
       </div>
 
       <div class="card">
         <h3>Female Annual Check-Up <span class="price">$239</span></h3>
         <ul>
-          <li><strong>CBC</strong> — Screens for anemia and infection.</li>
-          <li><strong>CMP</strong> — Organ function &amp; electrolytes.</li>
-          <li><strong>TSH</strong> — Thyroid check.</li>
-          <li><strong>Lipid Panel</strong> — Heart health.</li>
-          <li><strong>A1C</strong> — Average glucose control.</li>
-          <li><strong>Urinalysis Complete w/ Microscopy</strong> — Kidney &amp; urinary health.</li>
+          <li>CBC — Screens for anemia, infection, and other conditions.</li>
+          <li>CMP — Organ function &amp; electrolyte balance.</li>
+          <li>TSH — Thyroid disorders check.</li>
+          <li>Lipid Panel — Cardiovascular health.</li>
+          <li>A1C — Average blood sugar control.</li>
+          <li>Urinalysis Complete w/ Micro — Kidney disease, UTIs, and other urinary disorders.</li>
         </ul>
       </div>
 
       <div class="card">
         <h3>Male Annual Check-Up <span class="price">$309</span></h3>
         <ul>
-          <li><strong>CBC</strong>, <strong>CMP</strong>, <strong>TSH</strong>, <strong>Lipid Panel</strong>, <strong>A1C</strong></li>
-          <li><strong>PSA, Total</strong> — Prostate health.</li>
-          <li><strong>Testosterone</strong> — Male hormone level.</li>
+          <li>CBC — General health screen.</li>
+          <li>CMP — Organ function &amp; electrolytes.</li>
+          <li>TSH — Thyroid health assessment.</li>
+          <li>Lipid Panel — Heart health cholesterol check.</li>
+          <li>A1C — Average glucose control.</li>
+          <li>PSA Total — Prostate health screen.</li>
+          <li>Testosterone — Male hormone levels.</li>
         </ul>
       </div>
 
       <div class="card">
         <h3>Menopause Screening Panel <span class="price">$389</span></h3>
         <ul>
-          <li><strong>CBC</strong> — General health and anemia screen.</li>
-          <li><strong>FSH</strong>, <strong>LH</strong>, <strong>Estradiol</strong>, <strong>Progesterone</strong>, <strong>Estrogen (Total)</strong> — Reproductive hormones.</li>
-          <li><strong>TSH</strong>, <strong>T4, Total</strong> — Thyroid assessment.</li>
+          <li>CBC — General health &amp; anemia screen.</li>
+          <li>FSH • LH — Reproductive hormone levels.</li>
+          <li>Estradiol • Estrogen Total • Progesterone</li>
+          <li>TSH • T4 Total — Thyroid function.</li>
         </ul>
       </div>
 
       <div class="card">
         <h3>Thyroid Basic Panel <span class="price">$169</span></h3>
         <ul>
-          <li><strong>TSH</strong> — Primary thyroid screening test.</li>
-          <li><strong>T3 Free</strong> — Active triiodothyronine.</li>
-          <li><strong>T4 Free</strong> — Free thyroxine.</li>
+          <li>TSH — Primary thyroid screening.</li>
+          <li>T3 Free — Active triiodothyronine.</li>
+          <li>T4 Free — Free thyroxine.</li>
         </ul>
       </div>
-    </section>
 
-    <section class="section">
       <div class="card">
         <h3>STD Panel (Comprehensive) <span class="price">$379</span></h3>
         <ul>
-          <li><strong>Hepatitis C</strong>, <strong>Hepatitis A</strong>, <strong>Hepatitis B</strong></li>
-          <li><strong>RPR (Syphilis)</strong></li>
-          <li><strong>HIV, 4th Generation</strong></li>
-          <li><strong>Chlamydia / Gonorrhea</strong></li>
-          <li><strong>HSV-1 &amp; HSV-2 (Herpes)</strong></li>
+          <li>Hepatitis C • Hepatitis A • Hepatitis B</li>
+          <li>RPR (Syphilis)</li>
+          <li>HIV, 4th Generation</li>
+          <li>Chlamydia / Gonorrhea</li>
+          <li>HSV-1 &amp; HSV-2 (Herpes)</li>
         </ul>
       </div>
-    </section>
+    </div>
 
-    <section class="section notice">
-      <p class="legend"><em>All test prices include the mobile travel fee, specimen processing fee, and secure delivery of samples to the laboratory.</em></p>
-    </section>
-  </main>
+    <div class="note">
+      All test prices include the mobile travel fee, specimen processing fee, and secure delivery of samples to the laboratory.
+    </div>
+  </div>
 
-  <footer>
-    <p>&copy; <span id="year"></span> ProHome Draws &amp; Collections. VIP Services &amp; Lab Panels.</p>
-  </footer>
-
-  <script>
-    const $ = (s)=>document.querySelector(s);
-    const open = (id)=>{ const el=document.getElementById(id); el.classList.add('open'); el.setAttribute('aria-hidden','false'); };
-    const closeD = (id)=>{ const el=document.getElementById(id); el.classList.remove('open'); el.setAttribute('aria-hidden','true'); };
-
-    // Only topbar "Contact Now" opens the left drawer
-    const topBtn = $('#topContact');
-    if (topBtn) topBtn.addEventListener('click', ()=> open('drawerContact'));
-
-    // Close buttons
-    document.querySelectorAll('.close').forEach(btn=>{ btn.addEventListener('click', ()=> closeD(btn.dataset.close)); });
-    // ESC to close
-    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ closeD('drawerContact'); } });
-
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+<script>
+  // Simple popover toggles (works inside Wix HTML embed)
+  const toggles = [
+    {btn:'#callBtn'}, {btn:'#textBtn'}
+  ];
+  toggles.forEach(({btn})=>{
+    const b = document.querySelector(btn);
+    if(!b) return;
+    const pop = b.nextElementSibling;
+    const closeAll = () => {
+      document.querySelectorAll('.btn[aria-expanded="true"]').forEach(x=>{
+        x.setAttribute('aria-expanded','false');
+        x.nextElementSibling?.style.setProperty('display','none');
+      });
+    };
+    b.addEventListener('click', (e)=>{
+      e.stopPropagation();
+      const expanded = b.getAttribute('aria-expanded') === 'true';
+      closeAll();
+      if(!expanded){
+        b.setAttribute('aria-expanded','true');
+        pop.style.display = 'block';
+      }
+    });
+    document.addEventListener('click', closeAll);
+    document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeAll(); });
+  });
+</script>
 </body>
 </html>
+
